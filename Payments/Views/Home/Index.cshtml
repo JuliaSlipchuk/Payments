@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Main Page</title>
+    </head>
+    <body>
+        <div class="form">
+            @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+            {
+                <div>
+                    @Html.Label("Pleace, enter your Ukraine number of account (for archive)", new { @class = "label"})<br/>
+                    @Html.TextBox("CurrAccUkr", "", new {@class = "textBox"})<br/>
+                    @Html.Label("Pleace, enter your Swift number of account (for archive)", new { @class = "label" })<br/>
+                    @Html.TextBox("CurrAccSwift", "", new { @class = "textBox" })
+                </div>
+                <div>
+                    <button name="buttVal" value="Archive" class="button buttonSmall">Archive</button>
+                </div>
+                <div>
+                    @Html.Label("Pleace, enter your email (for create a new payment)", new { @class = "label" })<br />
+                    @Html.TextBox("Email", "", new { type = "email", @class = "textBox"})
+                </div>
+                <div>
+                    <input type="radio" id="Ukr" name="Payments" value="Ukr" class="myradio"/>
+                    <label class="labelRad">Ukraine Payment</label> <br />
+                    <input type="radio" id="Swift" name="Payments" value="Swift" class="myradio"/>
+                    <label class="labelRad">Swift Payment</label> <br />
+                </div>
+                <div>
+                    <button name="buttVal" value="CreateNew" class="button buttonBig">Create a new payment</button>
+                </div>
+                <div>
+                    @Html.Label("Pleace, enter login (for create or delete a card)", new { @class = "label" })<br />
+                    @Html.TextBox("AdminLogin", "", new { @class = "textBox" })<br />
+                    @Html.Label("Pleace, enter password (for create or delete a card)", new { @class = "label" })<br />
+                    @Html.TextBox("AdminPassword", "", new { @type = "password", @class = "textBox" })<br />
+                    @Html.Label("Pleace, choose card type", new { @class = "label"})<br/>
+                    <input type="radio" id="Ukr" name="PaymentsAddOrDel" value="Ukr" class="myradio" />
+                    <label class="labelRad">Ukraine Payment</label> <br />
+                    <input type="radio" id="Swift" name="PaymentsAddOrDel" value="Swift" class="myradio" />
+                    <label class="labelRad">Swift Payment</label> <br />
+                </div>
+                <div>
+                    <div><button name="buttVal" value="CreateCard" class="button buttonBig">Create a new card</button></div>
+                    <div><button name="buttVal" value="DeleteCard" class="button buttonBig">Delete a card</button></div>
+                </div>
+            }
+        </div>
+    </body>
+</html>

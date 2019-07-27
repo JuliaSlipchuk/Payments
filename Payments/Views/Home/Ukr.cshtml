@@ -1,0 +1,39 @@
+﻿@using Payments.Models
+@model UkrPayments
+@{
+    ViewBag.Title = "Ukr";
+}
+
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Ukraine Payment</title>
+    </head>
+    <body>
+        <div class="form">
+            @using (Html.BeginForm("Verificat", "Home", FormMethod.Post))
+            {
+            <div>
+                @Html.LabelFor(m => m.PayeeName, "Enter payee name (lenght between (5, 50))", new { @class = "label"})<br />
+                @Html.TextBoxFor(m => m.PayeeName, new { @class = "textBox" })<br /> 
+                @Html.LabelFor(m => m.Sum, "Enter sum (>= 100 && <= 999999999999)", new { @class = "label" })<br />
+                @Html.TextBoxFor(m => m.Sum, new { @class = "textBox" })<br />
+                @Html.LabelFor(m => m.PurposePayment, "Enter purpose payment (####-####-####-####)", new { @class = "label" })<br />
+                @Html.TextBoxFor(m => m.PurposePayment, new { @class = "textBox" })<br />
+                @Html.LabelFor(m => m.EDRPOUcode, @"Enter EDRPOUcode (^\w{8}$)", new { @class = "label" })<br />
+                @Html.TextBoxFor(m => m.EDRPOUcode, new { @class = "textBox" })<br />
+                @Html.LabelFor(m => m.MFO, @"Enter MFO (^\d{6}$)", new { @class = "label" })<br />
+                @Html.TextBoxFor(m => m.MFO, new { @class = "textBox" })<br />
+                @Html.LabelFor(m => m.UkrCardsCurrentAccount, "Enter currentAccount (####-####-####-####)", new { @class = "label" })<br />
+                @Html.TextBoxFor(m => m.UkrCardsCurrentAccount, new { @class = "textBox" })<br />
+                @Html.LabelFor(m => m.Email, "Enter email", new { @class = "label" })<br />
+                @Html.TextBoxFor(m => m.Email, new { @type = "email", @readonly = "readonly", @class = "textBox"})<br />
+            </div>
+            <div>
+                <button name="buttVal" value="Ukr" class="button buttonBig">Create payment</button>
+            </div>
+            }
+        </div>
+    </body>
+</html>
+

@@ -1,0 +1,85 @@
+﻿@using Payments.Models
+@{
+    ViewBag.Title = "Archive";
+}
+
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>Archive</title>
+    </head>
+    <body>
+        <div>
+            @{
+                if (ViewBag.ukrPayments != null)
+                {
+                    <h2>UkrPayments</h2>
+                    <table>
+                        <tr>
+                            <th>UkrId</th>
+                            <th>PayeeName</th>
+                            <th>Sum</th>
+                            <th>PurposePayment</th>
+                            <th>EDRPOUcode</th>
+                            <th>MFO</th>
+                            <th>UkrCardsCurrentAccount</th>
+                            <th>Email</th>
+                            <th>DateTime</th>
+                        </tr>
+                        @foreach(UkrPayments ukr in ViewBag.ukrPayments)
+                        {
+                        <tr>
+                            <td>@ukr.UrkrId</td>
+                            <td>@ukr.PayeeName</td>
+                            <td>@ukr.Sum</td>
+                            <td>@ukr.PurposePayment</td>
+                            <td>@ukr.EDRPOUcode</td>
+                            <td>@ukr.MFO</td>
+                            <td>@ukr.UkrCardsCurrentAccount</td>
+                            <td>@ukr.Email</td>
+                            <td>@ukr.DateTime</td>
+                        </tr>
+                        }
+                    </table>
+                }
+                if (ViewBag.swiftPayments != null)
+                {
+                    <h2>SwiftPayments</h2>
+                    <table>
+                        <tr>
+                            <th>SwiftId</th>
+                            <th>PayerPhoto</th>
+                            <th>RecipientCurrency</th>
+                            <th>Sum</th>
+                            <th>PaymentReference</th>
+                            <th>BIC</th>
+                            <th>IBAN</th>
+                            <th>SwiftCardsCurrentAccount</th>
+                            <th>Email</th>
+                            <th>DateTime</th>
+                        </tr>
+                        @foreach (SwiftPayments swift in ViewBag.swiftPayments)
+                        {
+                            <tr>
+                                <td>@swift.SwiftId</td>
+                                <td>@Html.Raw($"<img style='width:90pt;' src=\"data:image/{(swift.Extension == "jpg" ? "jpeg" : swift.Extension)};base64," + Convert.ToBase64String(swift.PayerPhoto) + "\" />")</td>
+                                <td>@swift.RecipientCurrency</td>
+                                <td>@swift.Sum</td>
+                                <td>@swift.PaymentReference</td>
+                                <td>@swift.BIC</td>
+                                <td>@swift.IBAN</td>
+                                <td>@swift.SwiftCardsCurrentAccount</td>
+                                <td>@swift.Email</td>
+                                <td>@swift.DateTime</td>
+                            </tr>
+                        }
+                    </table>
+                }
+            }
+            <form action="/Home/Index" method="get">
+                <button name="toIndex" value="toIndex" class="button buttonSmall">Ok(to Index)</button>
+            </form>
+        </div>
+    </body>
+</html>
+

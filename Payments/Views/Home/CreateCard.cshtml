@@ -1,0 +1,31 @@
+﻿@using Payments.Models
+@{
+    ViewBag.Title = "CreateCard";
+}
+
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Create a new card</title>
+</head>
+<body>
+    @{
+        <div class="form">
+            @using (Html.BeginForm("AddOrDeleteCard", "Home", FormMethod.Post))
+            {
+                @Html.Hidden("act", (object)"Create")
+                @Html.Hidden("type", (object)ViewBag.Type)
+                @Html.Label("ForCurrAcc", "Pleace, enter account (####-####-####-####)", new { @class = "label" })<br />
+                @Html.TextBox("CurrentAccount", "", new { @class = "textBox" });<br />
+                @Html.Label("ForSum", @"Pleace, enter sum (\d{3, 12})", new { @class = "label" })<br />
+                @Html.TextBox("Sum", "", new { @class = "textBox" })<br />
+                <div>
+                    <div><button name="buttVal" value="Create" class="button buttonSmall">Create</button></div>
+                    <div><button name="buttVal" value="Exit" class="button buttonSmall">Exit</button></div>
+                </div>
+            }
+        </div>
+    }
+</body>
+</html>
+

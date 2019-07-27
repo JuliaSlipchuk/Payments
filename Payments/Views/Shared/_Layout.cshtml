@@ -1,0 +1,234 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <style>
+        * {
+            font-family: Avantgarde, TeX Gyre Adventor, URW Gothic L, sans-serif;
+            color: black;
+            font-stretch: semi-expanded;
+        }
+        h2 {
+            text-align: center;
+            border: 2px double black;
+            font-weight: 700;
+        }
+        h3 {
+            text-align: center;
+            font-weight: 600;
+        }
+        table {
+            border-spacing: 0 10px;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: bold;
+        }
+        tablePaym {
+            margin: 2% 0% 0% 37%;
+            border-spacing: 0 10px;
+            font-family: 'Open Sans', sans-serif;
+            font-weight: bold;
+        }
+        th {
+            padding: 10px 20px;
+            background: #C0C0C0;
+            color:black;
+            border-right: 2px solid black;
+            font-size: 0.9em;
+        }
+        th:first-child {
+            text-align: left;
+        }
+
+        th:last-child {
+            border-right: none;
+        }
+        td {
+            vertical-align: middle;
+            padding: 10px;
+            font-size: 14px;
+            text-align: center;
+            border: 2px solid black;
+        }
+        td:first-child {
+            border-left: 2px solid black;
+            border-right: none;
+        }
+        td:nth-child(2) {
+            text-align: left;
+        }
+        .form {
+            margin: 5% 10% 20% 20%;
+            max-width: 50%;
+            padding: 30px 30px 6px 30px;
+            border: 1px solid rgba(0,0,0,.2);
+            -moz-border-radius: 5px;
+            -webkit-border-radius: 5px;
+            border-radius: 5px;
+            -moz-background-clip: padding;
+            -webkit-background-clip: padding-box;
+            background-clip: padding-box;
+            background: rgba(0, 0, 0, 0.5);
+            -moz-box-shadow: 0 0 13px 3px rgba(0,0,0,.5);
+            -webkit-box-shadow: 0 0 13px 3px rgba(0,0,0,.5);
+            box-shadow: 0 0 13px 3px rgba(0,0,0,.5);
+            overflow: hidden;
+        }
+        .label {
+            color: white !important;
+            font-size: 17px;
+            font-weight: 700;
+            font-style: oblique;
+        }
+        .textBox {
+            background: rgba(255, 255, 255, 0.4);
+            width: 60%;
+            height: 50px;
+            margin: 2% 10% 5% 10%;
+            border: 1px solid rgba(255,255,255,.6);
+            -moz-border-radius: 4px;
+            -webkit-border-radius: 4px;
+            border-radius: 4px;
+            -moz-background-clip: padding;
+            -webkit-background-clip: padding-box;
+            background-clip: padding-box;
+            display: block;
+            font-family: 'Open Sans', sans-serif;
+            font-size: 18px;
+            font-weight: 80;
+            color: #fff;
+            padding-left: 25px;
+            padding-right: 20px;
+            padding-top: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+        input[type="file"] {
+            display: none;
+        }
+        .custom-file-upload {
+            margin-top: 2%;
+            margin-left: 30%;
+            width: 200px;
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+        }
+        .select {
+            margin-top: 2%;
+            margin-left: 25%;
+            background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;
+            height: 29px;
+            overflow: hidden;
+            width: 240px;
+        }
+        .gray {
+            background-color: #808080;
+        }
+        .rounded {
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+        }
+        button {
+            width: 150px;
+            text-decoration: none;
+            padding-top: 9px;
+            color: white;
+            text-align: center;
+            line-height: 20px;
+            display: block;
+            margin: 20px auto;
+            font: normal 17px arial;
+        }
+        buttonSmall {
+            height: 30px;
+        }
+        buttonBig {
+            height: 50px;
+        }
+        button:not(.active) {
+            box-shadow: inset 0 1px 1px rgba(111, 55, 125, 0.8), inset 0 -1px 0px rgba(63, 59, 113, 0.2), 0 9px 16px 0 rgba(0, 0, 0, 0.3), 0 4px 3px 0 rgba(0, 0, 0, 0.3), 0 0 0 1px #150a1e;
+            background-image: linear-gradient(#808080, #000000);
+            text-shadow: 0 0 21px rgba(223, 206, 228, 0.5), 0 -1px 0 #311d47;
+        }
+        button:not(.active):hover,
+        button:not(.active):focus {
+            transition: color 200ms linear, text-shadow 500ms linear;
+            color: #fff;
+            text-shadow: 0 0 21px rgba(223, 206, 228, 0.5), 0 0 10px rgba(223, 206, 228, 0.4), 0 0 2px #2a153c;
+        }
+        button:not(:hover) {
+            transition: 0.6s;
+        }
+        /*.button {
+            margin: 5% 30% 5% 40%;
+            cursor: pointer;
+            border: 1px solid #cecece;
+            background: #f6f6f6;
+            box-shadow: inset 0px 20px 20px #ffffff;
+            border-radius: 8px;
+            padding: 8px 14px;
+            width: 120px;
+            font-size: 16px;
+            font-family: 'Orator Std';
+        }
+        .button:hover {
+            box-shadow: inset 0px -20px 20px #ffffff;
+        }
+        .button:active {
+            margin-top: 1px;
+            margin-bottom: -1px;
+            zoom: 1;
+        }*/
+        .labelRad {
+            color: white !important;
+            font-size: 17px;
+            font-weight: 700;
+            font-style: oblique;
+            margin-left: 3%;
+        }
+        #Ukr, #Swift {
+            vertical-align: top;
+            width: 25px;
+            height: 25px;
+            margin: 0.5% 0% 0% 20%;
+        }
+        .myradio + label {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("About", "About", "Home")</li>
+                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        </footer>
+    </div>
+</body>
+</html>

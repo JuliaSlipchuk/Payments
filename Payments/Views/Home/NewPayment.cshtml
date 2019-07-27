@@ -1,0 +1,49 @@
+﻿@using Payments.Models;
+@{
+    ViewBag.Title = "NewPayment";
+}
+
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>New Payment</title>
+    </head>
+    <body>
+        <h2>Your new payment</h2><br/>
+        <div>
+        @{ 
+            if (ViewBag.ukrPaym != null)
+            {
+                <h3>UkrPayment</h3>
+                <table>
+                    <tr><th>Payment dateTime: </th><td>@ViewBag.ukrPaym.DateTime</td></tr>
+                    <tr><th>Receiver: </th><td>@ViewBag.ukrPaym.PurposePayment</td></tr>
+                    <tr><th>Sum: </th><td>@ViewBag.ukrPaym.Sum</td></tr>
+                    <tr><th>Comission: </th><td>@ViewBag.Sum - (0.1 * @ViewBag.Sum + 10)</td></tr>
+                    <tr><th>EDRPOUcode: </th><td>@ViewBag.ukrPaym.EDRPOUcode</td></tr>
+                    <tr><th>MFO: </th><td>@ViewBag.ukrPaym.MFO</td></tr>
+                    <tr><th>From acount: </th><td>@ViewBag.ukrPaym.UkrCardsCurrentAccount</td></tr>
+                </table>
+            }
+            else
+            {
+                <h3>SwiftPayment</h3>
+                <table>
+                    <tr><th>Payment dateTime: </th><td>@ViewBag.swiftPaym.DateTime</td></tr>
+                    <tr><th>Payer photo: </th><td>@Html.Raw($"<img style='width:90pt;' src=\"data:image/{(ViewBag.swiftPaym.Extension == "jpg" ? "jpeg" : ViewBag.swiftPaym.Extension)};base64," + Convert.ToBase64String(ViewBag.swiftPaym.PayerPhoto) + "\" />")</td></tr>
+                    <tr><th>Sum: </th><td>@ViewBag.swiftPaym.Sum</td></tr>
+                    <tr><th>Comission: </th><td>@ViewBag.Sum - (0.1 * @ViewBag.Sum + 1)</td></tr>
+                    <tr><th>Payment reference: </th><td>@ViewBag.swiftPaym.PaymentReference</td></tr>
+                    <tr><th>BIC: </th><td>@ViewBag.swiftPaym.BIC</td></tr>
+                    <tr><th>IBAN: </th><td>@ViewBag.swiftPaym.IBAN</td></tr>
+                    <tr><th>From Account: </th><td>@ViewBag.swiftPaym.SwiftCardsCurrentAccount</td></tr>
+                </table>
+            }
+        }
+        <form action="/Home/Index" method="get">
+            <button name="toIndex" value="toIndex" class="button buttonSmall">Ok(to Index)</button>
+        </form>
+        </div>
+    </body>
+</html>
+

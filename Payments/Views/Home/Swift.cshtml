@@ -1,0 +1,44 @@
+﻿@using Payments.Models
+@model SwiftPayments
+@{
+    ViewBag.Title = "Swift";
+}
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Swift Payment</title>
+</head>
+<body>
+    <div class="form">
+        @using (Html.BeginForm("Verificat", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+        <div>
+            <h4 class="label">Select a photo</h4><br />
+            <label class="custom-file-upload">
+                <input type="file" name="uploadImage"/>
+                Photo upload
+            </label><br/>
+            @Html.LabelFor(m => m.RecipientCurrency, new { @class = "label" })<br />
+            @Html.DropDownListFor(m => m.RecipientCurrency, new SelectList(Enum.GetValues(typeof(Currency))), new { @class = "select gray rounded" })<br/>
+            @Html.LabelFor(m => m.Sum, "Enter sum (>= 100 && <= 999999999999)", new { @class = "label" })<br />
+            @Html.TextBoxFor(m => m.Sum, new { @class = "textBox" })<br />
+            @Html.LabelFor(m => m.PaymentReference, "Enter payment reference (####-####-####-####)", new { @class = "label" })<br />
+            @Html.TextBoxFor(m => m.PaymentReference, new { @class = "textBox" })<br />
+            @Html.LabelFor(m => m.BIC, @"Enter BIC (^[A-Z]{6}\w{2,5}$)", new { @class = "label" })<br />
+            @Html.TextBoxFor(m => m.BIC, new { @class = "textBox" })<br />
+            @Html.LabelFor(m => m.IBAN, @"Enter IBAN (^[A-Z]{2}\d{20}$)", new { @class = "label" })<br />
+            @Html.TextBoxFor(m => m.IBAN, new { @class = "textBox" })<br />
+            @Html.LabelFor(m => m.SwiftCardsCurrentAccount, "Enter your current account (####-####-####-####)", new { @class = "label" })<br />
+            @Html.TextBoxFor(m => m.SwiftCardsCurrentAccount, new { @class = "textBox" })<br />
+            @Html.LabelFor(m => m.Email, "Enter email", new { @class = "label" })<br />
+            @Html.TextBoxFor(m => m.Email, new { @type = "email", @readonly = "readonly", @class = "textBox" })<br />
+        </div>
+            <div>
+                <button name="buttVal" value="Swift" class="button buttonBig">Create payment</button>
+            </div>
+        }
+    </div>
+</body>
+</html>
+

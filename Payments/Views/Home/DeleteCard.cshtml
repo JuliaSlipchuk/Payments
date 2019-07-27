@@ -1,0 +1,27 @@
+﻿
+@{
+    ViewBag.Title = "DeleteCard";
+}
+
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>Delete card</title>
+</head>
+<body>
+    <div class="form">
+        @using (Html.BeginForm("AddOrDeleteCard", "Home", FormMethod.Post))
+        {
+            @Html.Hidden("act", (object)"Delete")<br/>
+            @Html.Hidden("type", (object)ViewBag.Type)<br/>
+            @Html.Label("Pleace, enter account for delete (####-####-####-####)", new { @class = "label"})<br/>
+            @Html.TextBox("CurrentAccount", "", new { @class = "textBox"})<br/>
+            <div>
+                <div><button name="buttVal" value="Delete" class="button buttonSmall">Delete</button></div>
+                <div><button name="buttVal" value="Exit" class="button buttonSmall">Exit</button></div>
+            </div>
+        }
+    </div>
+</body>
+</html>
+
